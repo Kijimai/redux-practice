@@ -1,6 +1,7 @@
 import React from 'react'
 
-const CartItem = () => {
+const CartItem = ({id, title, price, image, amount}) => {
+  
   return (
     <div>CartItem</div>
   )
