@@ -88,7 +88,7 @@ ReactDOM.render(
 - application feature
 - create features folder/cart
 - create cartSlice.js
-
+ 
 ```js
 import { createSlice } from '@reduxjs/toolkit';
 
