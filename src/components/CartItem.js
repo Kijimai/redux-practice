@@ -1,16 +1,23 @@
 import React from "react"
 import { ChevronDown, ChevronUp } from "../icons"
-const CartItem = ({ id, title, price, image, amount }) => {
+import { useDispatch } from "react-redux"
+import { increaseAmount, decreaseAmount, removeItem } from "../features/cart/cartSlice"
+const CartItem = ({ id, title, price, img, amount }) => {
+  const dispatch = useDispatch()
+
   return (
     <article className="cart-item">
-      <img src={image} alt={title} />
+      <img src={img} alt={title} />
       <div>
         <h4>{title}</h4>
         <h4 className="item-price">${price}</h4>
-        <button className="remove-btn">Remove</button>
+        <button onClick={() => dispatch(removeItem(id))} className="remove-btn">Remove</button>
       </div>
       <div>
-        <button className="amount-btn">
+        <button
+          className="amount-btn"
+          onClick={() => dispatch(increaseAmount(id))}
+        >
           <ChevronUp />
         </button>
         <p className="amount">{amount}</p>
