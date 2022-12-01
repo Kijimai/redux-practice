@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { clearCart, updateCart } from "../features/cart/cartSlice"
+import { clearCart, updateCart, calculateTotals } from "../features/cart/cartSlice"
 import CartItem from "./CartItem"
 
 const CartContainer = () => {
@@ -8,7 +8,7 @@ const CartContainer = () => {
   const { cartItems, total, amount } = useSelector((state) => state.cart)
 
   useEffect(() => {
-    dispatch(updateCart())
+    dispatch(calculateTotals())
     //eslint-disable-next-line
   }, [cartItems])
 
