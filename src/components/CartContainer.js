@@ -1,16 +1,11 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { clearCart, updateCart, calculateTotals } from "../features/cart/cartSlice"
+import { clearCart } from "../features/cart/cartSlice"
 import CartItem from "./CartItem"
 
 const CartContainer = () => {
   const dispatch = useDispatch()
   const { cartItems, total, amount } = useSelector((state) => state.cart)
-
-  useEffect(() => {
-    dispatch(calculateTotals())
-    //eslint-disable-next-line
-  }, [cartItems])
 
   if (amount < 1) {
     return (
@@ -37,7 +32,7 @@ const CartContainer = () => {
         <hr />
         <div className="cart-total">
           <h4>
-            total <span>${total}</span>
+            total <span>${total.toFixed(2)}</span>
           </h4>
         </div>
         <button
