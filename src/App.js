@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import Navbar from "./components/Navbar"
 import CartContainer from "./components/CartContainer"
+import Modal from "./components/Modal"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { calculateTotals } from "./features/cart/cartSlice"
@@ -8,6 +9,7 @@ import { calculateTotals } from "./features/cart/cartSlice"
 function App() {
   const dispatch = useDispatch()
   const { cartItems } = useSelector((state) => state.cart)
+  const { isShowing } = useSelector((state) => state.modal)
 
   useEffect(() => {
     dispatch(calculateTotals())
@@ -18,6 +20,7 @@ function App() {
     <main>
       <Navbar />
       <CartContainer />
+      {isShowing && <Modal />}
     </main>
   )
 }
