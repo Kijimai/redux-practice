@@ -9,6 +9,7 @@ const CartContainer = () => {
 
   useEffect(() => {
     dispatch(updateCart())
+    //eslint-disable-next-line
   }, [cartItems])
 
   if (amount < 1) {

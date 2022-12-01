@@ -12,24 +12,38 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    clearCart: (state, payload) => {
-      console.log(payload)
-      console.log("Clearing Cart")
+    clearCart: (state) => {
       state.cartItems = []
     },
-    increaseAmount: (state, { payload }) => {},
-    decreaseAmount: (state, { payload }) => {},
+    increaseAmount: (state, action) => {
+      const itemId = action.payload
+      const foundItem = state.cartItems.find((item) => {
+        return item.id === itemId
+      })
+      foundItem.amount = foundItem.amount + 1
+    },
+    decreaseAmount: (state, action) => {
+      const itemId = action.payload
+      const foundItem = state.cartItems.find((item) => {
+        return item.id === itemId
+      })
+      if (foundItem.amount <= 1) {
+        foundItem.amount = 1
+      } else {
+        foundItem.amount = foundItem.amount - 1
+      }
+    },
     updateCart: (state) => {
       state.amount = state.cartItems.length
     },
-    removeItem: (state, { payload }) => {
+    removeItem: (state, action) => {
+      const itemId = action.payload
       state.cartItems = state.cartItems.filter((item) => {
-        return item.id !== payload
+        return item.id !== itemId
       })
     },
   },
 })
-// console.log(cartSlice)
 
 export const {
   clearCart,
